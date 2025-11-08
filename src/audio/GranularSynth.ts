@@ -9,6 +9,7 @@ interface Grain {
 export class GranularSynth {
   private context: AudioContext;
   private masterGain: GainNode;
+  private analyserTap: GainNode;
   private grains: Grain[] = [];
   private grainDuration: number = 0.1;
   private grainDensity: number = 10;
@@ -21,7 +22,12 @@ export class GranularSynth {
     this.context = new AudioContext();
     this.masterGain = this.context.createGain();
     this.masterGain.gain.value = 0.3;
-    this.masterGain.connect(this.context.destination);
+
+    this.analyserTap = this.context.createGain();
+    this.analyserTap.gain.value = 1;
+
+    this.masterGain.connect(this.analyserTap);
+    this.analyserTap.connect(this.context.destination);
   }
 
   start() {
@@ -118,5 +124,9 @@ export class GranularSynth {
 
   getContext(): AudioContext {
     return this.context;
+  }
+
+  getAnalyserNode(): GainNode {
+    return this.analyserTap;
   }
 }

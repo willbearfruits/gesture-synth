@@ -2,21 +2,22 @@ import { useEffect, useRef } from 'react';
 
 interface AudioVisualizerProps {
   audioContext: AudioContext | null;
+  analyserNode: GainNode | null;
 }
 
-export function AudioVisualizer({ audioContext }: AudioVisualizerProps) {
+export function AudioVisualizer({ audioContext, analyserNode }: AudioVisualizerProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
   const animationRef = useRef<number>();
 
   useEffect(() => {
-    if (!audioContext || !canvasRef.current) return;
+    if (!audioContext || !analyserNode || !canvasRef.current) return;
 
     const analyser = audioContext.createAnalyser();
     analyser.fftSize = 2048;
     analyserRef.current = analyser;
 
-    audioContext.destination.connect?.(analyser);
+    analyserNode.connect(analyser);
 
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
@@ -67,7 +68,7 @@ export function AudioVisualizer({ audioContext }: AudioVisualizerProps) {
         analyserRef.current.disconnect();
       }
     };
-  }, [audioContext]);
+  }, [audioContext, analyserNode]);
 
   return (
     <canvas

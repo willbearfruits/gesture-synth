@@ -126,6 +126,7 @@ function App() {
             <h2 className="text-xl font-semibold mb-4">Audio Waveform</h2>
             <AudioVisualizer
               audioContext={synthRef.current?.getContext() || null}
+              analyserNode={synthRef.current?.getAnalyserNode() || null}
             />
 
             <div className="mt-6">
