@@ -2,6 +2,10 @@
 
 An experimental web-based audio synthesizer controlled by hand gestures using computer vision.
 
+## Live Demo
+
+- GitHub Pages: https://willbearfruits.github.io/gesture-synth/
+
 ## Overview
 
 This project combines Karplus-Strong string synthesis with granular audio processing, controlled through hand tracking via your webcam. Move your hands to manipulate sound parameters in real-time.
@@ -65,6 +69,12 @@ npm run lint
 # Preview production build
 npm run preview
 ```
+
+## Deploy (GitHub Pages)
+
+This repository deploys automatically to GitHub Pages from `main` using:
+
+- `.github/workflows/deploy-pages.yml`
 
 ## Project Structure
 
