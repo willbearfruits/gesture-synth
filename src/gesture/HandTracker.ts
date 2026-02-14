@@ -27,7 +27,8 @@ export class HandTracker {
 
     this.hands = new Hands({
       locateFile: (file) => {
-        return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
+        // Pin runtime assets to an explicit package version to avoid drifting CDN updates.
+        return `https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1675469240/${file}`;
       },
     });
 

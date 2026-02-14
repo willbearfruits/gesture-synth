@@ -24,7 +24,6 @@ This project combines Karplus-Strong string synthesis with granular audio proces
 - **Vite** - Build tool and dev server
 - **MediaPipe Hands** - Hand tracking and gesture recognition
 - **Web Audio API** - Real-time audio synthesis
-- **Supabase** - Backend services
 - **Tailwind CSS** - Styling
 
 ## Getting Started
@@ -76,6 +75,11 @@ This repository deploys automatically to GitHub Pages from `main` using:
 
 - `.github/workflows/deploy-pages.yml`
 
+## Security
+
+- MediaPipe runtime assets are pinned to an explicit CDN version in `src/gesture/HandTracker.ts`.
+- Report vulnerabilities per `SECURITY.md`.
+
 ## Project Structure
 
 ```
@@ -104,3 +108,7 @@ src/
 ---
 
 *Built with hand gestures and creative coding*
+
+## License
+
+MIT (`LICENSE`)
